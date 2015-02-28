@@ -1,5 +1,5 @@
 # worder
-calculate possible words for given letters.
+Calculate possible words and corresponding points in *Scrabble* for given letters.
 
 ```
 $ python worder.py
@@ -26,3 +26,8 @@ matron  -  8
 ...
 
 ```
+
+# Word Sources
+
+* English: /usr/share/dict/words :) (lowercased)
+* Turkish: [zemberek](https://code.google.com/p/zemberek/downloads/detail?name=full.txt.tr.tar.gz&can=2&q=)
