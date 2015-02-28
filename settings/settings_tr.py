@@ -1,0 +1,33 @@
+#coding:utf-8
+from settings import *
+
+CHAR_POINTS = {
+    u'a': 1,
+    u'b': 3,
+    u'c': 4,
+    u'ç': 4,
+    u'd': 3,
+    u'e': 1,
+    u'f': 7,
+    u'g': 5,
+    u'ğ': 8,
+    u'h': 5,
+    u'ı': 2,
+    u'i': 1,
+    u'j': 0,
+    u'k': 1,
+    u'l': 1,
+    u'm': 2,
+    u'n': 1,
+    u'o': 2,
+    u'ö': 7,
+    u'p': 5,
+    u'r': 1,
+    u's': 2,
+    u'ş': 4,
+    u't': 1,
+    u'u': 2,
+    u'ü': 3,
+    u'v': 7,
+    u'y': 3,
+    u'z': 4}
