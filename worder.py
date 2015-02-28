@@ -1,5 +1,5 @@
 #coding:utf-8
-import re
+import regex as re
 import codecs
 import string
 import importlib
@@ -23,11 +23,12 @@ def get_limited(alphabet, words):
     return words - set(banned)
 
 
-def search(alphabet, language, regex):
+def search(alphabet, language, regex='', wildcards=0):
     settings = importlib.import_module('settings.settings_%s' % language)
     regex_set = ''.join(filter(lambda x: x in string.lowercase, regex))
     alphabet += regex_set
-    matcher = re.compile('[' + alphabet + ']{2,}$', re.I).match
+    matcher = re.compile(
+        '(?e)([' + alphabet + ']{2,}){s<=%s}$' % wildcards, re.I).match
     words = set(word.replace('\n', '')
                 for word in codecs.open('data/%s.txt' % language, 'r', 'utf-8')
                 if matcher(word))
@@ -44,6 +45,8 @@ if __name__ == '__main__':
     alphabet = raw_input('Enter letters: ').decode('utf-8')
     language = raw_input('Enter language:') or 'en'
     regex = raw_input('Enter regex (optional):')
+    wildcards = len(re.findall('\*', alphabet))
+    alphabet = alphabet.replace('*', '')
 
-    for word in search(alphabet, language, regex):
-        print word[0], ' - ', word[1]
+    for word in search(alphabet, language, regex, wildcards):
+        print word[0], ' - ', word[1], ' points'
