@@ -43,7 +43,7 @@ def search(alphabet, language, regex='', wildcards=0):
 
 if __name__ == '__main__':
     alphabet = raw_input('Enter letters: ').decode('utf-8')
-    language = raw_input('Enter language:') or 'en'
+    language = raw_input('Enter language (en):') or 'en'
     regex = raw_input('Enter regex (optional):')
     wildcards = len(re.findall('\*', alphabet))
     alphabet = alphabet.replace('*', '')
