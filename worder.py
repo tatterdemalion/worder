@@ -23,10 +23,7 @@ def get_limited(alphabet, words):
     return words - set(banned)
 
 
-if __name__ == '__main__':
-    alphabet = raw_input('Enter letters: ').decode('utf-8')
-    language = raw_input('Enter language:') or 'en'
-    regex = raw_input('Enter regex (optional):')
+def search(alphabet, language, regex):
     settings = importlib.import_module('settings.settings_%s' % language)
     regex_set = ''.join(filter(lambda x: x in string.lowercase, regex))
     alphabet += regex_set
@@ -40,5 +37,13 @@ if __name__ == '__main__':
             calculated.append(
                 (word, sum([settings.CHAR_POINTS[char] for char in word])))
 
-    for word in sorted(calculated, key=lambda x: x[1], reverse=True):
+    return sorted(calculated, key=lambda x: x[1], reverse=True)
+
+
+if __name__ == '__main__':
+    alphabet = raw_input('Enter letters: ').decode('utf-8')
+    language = raw_input('Enter language:') or 'en'
+    regex = raw_input('Enter regex (optional):')
+
+    for word in search(alphabet, language, regex):
         print word[0], ' - ', word[1]
