@@ -25,7 +25,7 @@ def get_limited(alphabet, words):
 
 def search(alphabet, language, regex='', wildcards=0):
     settings = importlib.import_module('settings.settings_%s' % language)
-    regex_set = ''.join(filter(lambda x: x in string.lowercase, regex))
+    regex_set = ''.join(filter(lambda x: x in string.ascii_lowercase, regex))
     alphabet += regex_set
     matcher = re.compile(
         '(?e)([' + alphabet + ']{2,}){s<=%s}$' % wildcards, re.I).match
@@ -42,11 +42,11 @@ def search(alphabet, language, regex='', wildcards=0):
 
 
 if __name__ == '__main__':
-    alphabet = raw_input('Enter letters: ').decode('utf-8')
-    language = raw_input('Enter language (en):') or 'en'
-    regex = raw_input('Enter regex (optional):')
+    alphabet = input('Enter letters: ')
+    language = input('Enter language (en):') or 'en'
+    regex = input('Enter regex (optional):')
     wildcards = len(re.findall('\*', alphabet))
     alphabet = alphabet.replace('*', '')
 
     for word in search(alphabet, language, regex, wildcards):
-        print word[0], ' - ', word[1], ' points'
+        print(f'{word[0]} - {word[1]} points')
